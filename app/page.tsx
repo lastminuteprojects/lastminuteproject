@@ -223,12 +223,12 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto relative">
             {howItWorks.map((step, index) => (
               <div key={step.step} className="text-center relative z-10 mb-8 md:mb-0 flex-1">
-                <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center text-2xl mx-auto mb-4 border-4 border-white dark:border-gray-800 shadow-lg">
+                <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center text-2xl mx-auto mb-4 border-4 border-white dark:border-gray-800 shadow-lg relative z-20">
                   {step.icon}
                 </div>
                 {/* Connecting line between circles */}
                 {index < howItWorks.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-brand-yellow z-0" />
+                  <div className="hidden md:block absolute top-8 left-[calc(50%+32px)] w-[calc(100%-64px)] h-0.5 bg-brand-yellow z-10" />
                 )}
                 <h3 className="text-lg font-semibold text-brand-navy dark:text-white mb-2">
                   {step.step}. {step.title}
