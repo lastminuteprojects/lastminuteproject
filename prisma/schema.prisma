@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  studyYear String?
+  domain    String?  // NLP, CV, RAG, LLM, Web, etc.
+  title     String
+  details   String
+  dataset   String?  // provided|need_help|public_source
+  budgetMin Int?
+  budgetMax Int?
+  deadline  DateTime?
+  fileUrl   String?
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  summary   String
+  domain    String   // "LLM/RAG/NLP/CV/ML/FS"
+  tags      String[]
+  thumbUrl  String?
+  demoUrl   String?
+  repoUrl   String?
+  reportUrl String?
+  difficulty Int
+  featured  Boolean  @default(false)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  excerpt   String
+  content   String
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  @@map("users")
+}
