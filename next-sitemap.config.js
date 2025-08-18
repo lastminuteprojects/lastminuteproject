@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://lastminuteprojects.com',
+  siteUrl: process.env.SITE_URL || 'https://lastminuteproject.vercel.app',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   robotsTxtOptions: {
@@ -8,12 +8,10 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api/'],
       },
     ],
     additionalSitemaps: [
-      'https://lastminuteprojects.com/sitemap.xml',
+      'https://lastminuteproject.vercel.app/sitemap.xml',
     ],
   },
-  exclude: ['/admin/*', '/api/*'],
 }
