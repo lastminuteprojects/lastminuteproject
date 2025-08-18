@@ -13,12 +13,11 @@ import { Send, Loader2 } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 const domains = [
-  'LLM & GenAI',
-  'NLP',
-  'Computer Vision',
-  'Core ML',
-  'MLOps',
   'Web Development',
+  'Mobile Development',
+  'AI & Machine Learning',
+  'Blockchain & Web3',
+  'Data Analytics & BI',
   'Other'
 ]
 
@@ -33,9 +32,9 @@ const studyYears = [
 ]
 
 const datasetOptions = [
-  { value: 'provided', label: 'I have my own dataset' },
-  { value: 'need_help', label: 'I need help finding/creating data' },
-  { value: 'public_source', label: 'I want to use public datasets' }
+  { value: 'provided', label: 'I have my own data/requirements' },
+  { value: 'need_help', label: 'I need help with data/requirements' },
+  { value: 'public_source', label: 'I want to use public data/sources' }
 ]
 
 export function ContactForm() {
@@ -206,10 +205,10 @@ export function ContactForm() {
             )}
           </div>
 
-          {/* Dataset Information */}
+          {/* Data/Requirements Information */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Dataset Availability
+              Data/Requirements Availability
             </label>
             <div className="space-y-2">
               {datasetOptions.map((option) => (

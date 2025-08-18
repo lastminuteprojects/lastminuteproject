@@ -6,8 +6,8 @@ import { Mail, MessageCircle, MapPin, Clock } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Contact Us - Get a Quote for Your AI/ML Project',
-  description: 'Get in touch with us for your AI/ML project requirements. We provide free consultation and quotes for students.',
+  title: 'Contact Us - Get a Quote for Your Software Project',
+  description: 'Get in touch with us for your software project requirements across all tech stacks. We provide free consultation and quotes for students.',
 }
 
 export default function ContactPage() {
@@ -19,11 +19,11 @@ export default function ContactPage() {
       <section className="py-20 px-6 bg-gradient-to-br from-brand-yellow to-orange-500">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-brand-navy dark:text-brand-navy mb-6">
-            Get Your AI Project Quote
+            Get Your Project Quote
           </h1>
-          <p className="text-xl text-brand-navy dark:text-brand-navy mb-8">
-            Tell us about your project and we'll provide a detailed quote with timeline
-          </p>
+                     <p className="text-xl text-brand-navy dark:text-brand-navy mb-8">
+             Tell us about your project and we'll provide a detailed quote with timeline
+           </p>
         </div>
       </section>
 

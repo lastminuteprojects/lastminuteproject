@@ -7,8 +7,8 @@ import { ArrowRight, MessageSquare, FileText, Eye, Brain } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'AI/ML Demos - Live Interactive Examples',
-  description: 'Try our live AI/ML demos including chat, RAG, vision, and text summarization.',
+  title: 'Live Project Demos - Interactive Examples Across All Tech Stacks',
+  description: 'Try our live demos across web development, mobile apps, AI/ML, blockchain, and more.',
 }
 
 const demos = [
@@ -28,50 +28,66 @@ const demos = [
     url: '/demos/chat'
   },
   {
-    id: 'rag',
-    title: 'RAG Document Q&A',
-    description: 'Ask questions about uploaded documents with retrieval-augmented generation.',
+    id: 'ecommerce',
+    title: 'E-Commerce Web App',
+    description: 'Full-stack e-commerce platform with payment integration and admin dashboard.',
     icon: FileText,
     features: [
-      'Document upload and processing',
-      'Vector search and retrieval',
-      'Source citations',
-      'Multiple file formats'
+      'Product catalog and search',
+      'Shopping cart and checkout',
+      'Payment integration',
+      'Admin dashboard'
     ],
-    technologies: ['OpenAI Embeddings', 'Pinecone', 'LangChain', 'pgvector'],
+    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     status: 'Live',
-    url: '/demos/rag'
+    url: '/demos/ecommerce'
   },
   {
-    id: 'vision',
-    title: 'Computer Vision Demo',
-    description: 'Image analysis, classification, and object detection using state-of-the-art models.',
+    id: 'taskmanager',
+    title: 'Mobile Task Manager',
+    description: 'Cross-platform mobile app for task management with real-time sync.',
     icon: Eye,
     features: [
-      'Image classification',
-      'Object detection',
-      'Image captioning',
-      'Face recognition'
+      'Task creation and management',
+      'Real-time synchronization',
+      'Offline functionality',
+      'Push notifications'
     ],
-    technologies: ['PyTorch', 'OpenCV', 'YOLO', 'ResNet'],
+    technologies: ['React Native', 'Firebase', 'Redux', 'Expo'],
     status: 'Live',
-    url: '/demos/vision'
+    url: '/demos/taskmanager'
   },
   {
-    id: 'summarize',
-    title: 'Text Summarization',
-    description: 'Extractive and abstractive text summarization for documents and articles.',
+    id: 'dashboard',
+    title: 'Data Analytics Dashboard',
+    description: 'Interactive dashboard for business intelligence and data visualization.',
     icon: Brain,
     features: [
-      'Extractive summarization',
-      'Abstractive summarization',
-      'PDF document support',
-      'Customizable length'
+      'Real-time data visualization',
+      'Interactive charts and graphs',
+      'Data filtering and search',
+      'Export capabilities'
     ],
-    technologies: ['Transformers', 'BERT', 'T5', 'Hugging Face'],
+    technologies: ['Python', 'Tableau', 'SQL', 'D3.js'],
     status: 'Live',
-    url: '/demos/summarize'
-  }
+    url: '/demos/dashboard'
+  },
+  {
+    id: 'defi',
+    title: 'DeFi Smart Contract',
+    description: 'Decentralized finance application with smart contracts for token exchange.',
+    icon: MessageSquare,
+    features: [
+      'Token exchange functionality',
+      'Smart contract integration',
+      'Wallet connection',
+      'Transaction history'
+    ],
+    technologies: ['Solidity', 'Web3.js', 'Ethereum', 'MetaMask'],
+    status: 'Live',
+    url: '/demos/defi'
+  },
+
 ]
 
 export default function DemosPage() {
@@ -83,10 +99,10 @@ export default function DemosPage() {
       <section className="py-20 px-6 bg-gradient-to-br from-brand-yellow to-orange-500">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-brand-navy dark:text-brand-navy mb-6">
-            Live AI/ML Demos
+            Live Project Demos
           </h1>
           <p className="text-xl text-brand-navy dark:text-brand-navy mb-8">
-            Experience our AI/ML capabilities firsthand with interactive demos
+            Experience our capabilities across all tech stacks with interactive demos
           </p>
         </div>
       </section>
@@ -94,7 +110,7 @@ export default function DemosPage() {
       {/* Demos Grid */}
       <section className="py-20 px-6 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {demos.map((demo) => {
               const IconComponent = demo.icon
               return (
@@ -170,21 +186,21 @@ export default function DemosPage() {
                 <span className="text-2xl font-bold text-brand-navy dark:text-brand-navy">1</span>
               </div>
               <h3 className="text-xl font-semibold text-brand-navy dark:text-white mb-2">Choose a Demo</h3>
-              <p className="text-gray-600 dark:text-gray-300">Select from our range of AI/ML demos based on your interests.</p>
+              <p className="text-gray-600 dark:text-gray-300">Select from our range of demos across all tech stacks.</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-brand-navy dark:text-brand-navy">2</span>
               </div>
               <h3 className="text-xl font-semibold text-brand-navy dark:text-white mb-2">Interact & Test</h3>
-              <p className="text-gray-600 dark:text-gray-300">Try out the features, upload files, and see the AI in action.</p>
+              <p className="text-gray-600 dark:text-gray-300">Try out the features and see the technology in action.</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-brand-navy dark:text-brand-navy">3</span>
               </div>
               <h3 className="text-xl font-semibold text-brand-navy dark:text-white mb-2">Get Inspired</h3>
-              <p className="text-gray-600 dark:text-gray-300">Use these demos as inspiration for your own AI/ML project.</p>
+              <p className="text-gray-600 dark:text-gray-300">Use these demos as inspiration for your own project.</p>
             </div>
           </div>
         </div>
@@ -194,10 +210,10 @@ export default function DemosPage() {
       <section className="py-20 px-6 bg-brand-navy">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Want Your Own AI Project?
+            Want Your Own Project?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Get a custom AI/ML solution built for your specific needs
+            Get a custom solution built for your specific needs across any tech stack
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="brand">

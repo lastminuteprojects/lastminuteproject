@@ -11,29 +11,48 @@ const featuredProjects = [
     id: '1',
     title: 'AI Chatbot with RAG',
     summary: 'Intelligent chatbot with document retrieval and context-aware responses',
-    domain: 'LLM',
+    domain: 'AI/ML',
     tags: ['OpenAI', 'RAG', 'Python'],
     difficulty: 4,
     demoUrl: '/demos/chat',
   },
   {
     id: '2',
-    title: 'Image Classification Model',
-    summary: 'Deep learning model for multi-class image classification with 95% accuracy',
-    domain: 'CV',
-    tags: ['PyTorch', 'CNN', 'Transfer Learning'],
+    title: 'E-Commerce Web App',
+    summary: 'Full-stack e-commerce platform with payment integration and admin dashboard',
+    domain: 'Web Dev',
+    tags: ['React', 'Node.js', 'MongoDB'],
     difficulty: 3,
-    demoUrl: '/demos/vision',
+    demoUrl: '/demos/ecommerce',
   },
   {
     id: '3',
-    title: 'Text Summarization API',
-    summary: 'RESTful API for extractive and abstractive text summarization',
-    domain: 'NLP',
-    tags: ['Transformers', 'FastAPI', 'BERT'],
+    title: 'Mobile Task Manager',
+    summary: 'Cross-platform mobile app for task management with real-time sync',
+    domain: 'Mobile',
+    tags: ['React Native', 'Firebase', 'Redux'],
     difficulty: 3,
-    demoUrl: '/demos/summarize',
+    demoUrl: '/demos/taskmanager',
   },
+  {
+    id: '4',
+    title: 'Data Analytics Dashboard',
+    summary: 'Interactive dashboard for business intelligence and data visualization',
+    domain: 'Data',
+    tags: ['Python', 'Tableau', 'SQL'],
+    difficulty: 2,
+    demoUrl: '/demos/dashboard',
+  },
+  {
+    id: '5',
+    title: 'Blockchain Smart Contract',
+    summary: 'DeFi application with smart contracts for token exchange',
+    domain: 'Blockchain',
+    tags: ['Solidity', 'Web3.js', 'Ethereum'],
+    difficulty: 4,
+    demoUrl: '/demos/defi',
+  },
+
 ]
 
 const howItWorks = [
@@ -52,7 +71,7 @@ const howItWorks = [
   {
     step: 3,
     title: 'Build & Develop',
-            description: 'We build your project with daily updates and progress reports.',
+            description: 'We build your project with daily updates and progress tracking.',
     icon: '⚡',
   },
   {
@@ -71,12 +90,16 @@ const howItWorks = [
 
 const faqs = [
   {
-    question: 'What datasets do you work with?',
-    answer: 'We work with any dataset you provide, help you find public datasets, or create synthetic data when needed. We ensure data privacy and can sign NDAs.',
+    question: 'Do you suggest project ideas?',
+    answer: 'We don\'t suggest project ideas - we build your ideas for you. We specialize in bringing your existing concepts to life with complete implementation.',
+  },
+  {
+    question: 'What technologies do you work with?',
+    answer: 'We work with all major tech stacks: Web (React, Node.js, Python), Mobile (React Native, Flutter), AI/ML (Python, TensorFlow, PyTorch), Blockchain (Solidity, Web3), Data Analytics (Python, SQL, Tableau), and more.',
   },
   {
     question: 'How long does a typical project take?',
-            answer: 'All projects are completed in 1 week. For urgent projects, we offer express delivery in 3-4 days. We provide daily updates and can work with your deadlines.',
+    answer: 'All projects are completed in 1 week. For urgent projects, we offer express delivery in 3-4 days. We provide daily updates and can work with your deadlines.',
   },
   {
     question: 'Is the code original and plagiarism-free?',
@@ -84,11 +107,15 @@ const faqs = [
   },
   {
     question: 'What documentation do you provide?',
-    answer: 'We provide comprehensive documentation including setup instructions, API documentation, code comments, and a detailed project report.',
+    answer: 'We provide comprehensive documentation including setup instructions, API documentation, and code comments.',
   },
   {
     question: 'Do you provide post-delivery support?',
     answer: 'Yes, we provide 30 days of free support after delivery. We can also help with deployment, modifications, and future enhancements.',
+  },
+  {
+    question: 'Can you help with deployment and hosting?',
+    answer: 'Absolutely! We can help deploy your project to various platforms like Vercel, Heroku, AWS, or guide you through the deployment process step-by-step.',
   },
 ]
 
@@ -101,12 +128,15 @@ export default function HomePage() {
       <section className="hero-gradient py-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-brand-navy dark:text-brand-navy mb-6">
-            AI/ML & LLM Projects for Students
+            Complete Software Projects
             <br />
-            <span className="text-white">—any stack, on time.</span>
+            <span className="text-white">—any tech stack, on time.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-brand-navy dark:text-brand-navy mb-8 max-w-3xl mx-auto">
-            From idea to working code with docs, demos and explanation.
+          <p className="text-xl md:text-2xl text-brand-navy dark:text-brand-navy mb-4 max-w-3xl mx-auto">
+            From web apps to AI/ML, mobile to blockchain. We build it all with complete code, docs & demos.
+          </p>
+          <p className="text-lg text-brand-navy dark:text-brand-navy font-medium mb-8 max-w-2xl mx-auto">
+            We don't suggest project ideas - we build your ideas for you
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary">
@@ -160,13 +190,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-brand-navy dark:text-white mb-4">
-              Featured AI Projects
+              Featured Projects
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Explore some of our recent AI/ML projects. Each comes with complete code, documentation, and live demos.
+              Explore our diverse portfolio across all tech domains. Each project comes with complete code, documentation, and live demos.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
               <Card key={project.id} className="hover:shadow-lg transition-shadow bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                 <CardHeader>
@@ -270,10 +300,10 @@ export default function HomePage() {
       <section className="py-20 px-6 bg-brand-navy">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Build Your AI Project?
+            Ready to Build Your Project?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Get started today with a free consultation and quote.
+            Get started today with a free consultation and quote for any tech stack.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="brand">

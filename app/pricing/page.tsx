@@ -55,7 +55,7 @@ export default function PricingPage() {
         'LLM integration and RAG systems',
         'Custom AI agents and workflows',
         'Advanced deployment and monitoring',
-        'Complete project report',
+
         '30 days post-delivery support',
                  'Standard delivery (1 week)',
          'Express delivery (3-4 days) available'
