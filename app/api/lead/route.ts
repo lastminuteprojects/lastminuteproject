@@ -4,7 +4,8 @@ import { prisma } from '@/lib/db'
 import { Resend } from 'resend'
 import { rateLimit } from '@/lib/rate-limit'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Only initialize Resend if API key is available
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,7 +52,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Send email notification
-    if (process.env.RESEND_API_KEY) {
+    if (resend && process.env.RESEND_API_KEY) {
       try {
         await resend.emails.send({
           from: 'Last Minute Projects <hello@lastminuteprojects.com>',
