@@ -50,3 +50,11 @@ export const ragQuerySchema = z.object({
   query: z.string().min(1, 'Query cannot be empty'),
   topK: z.number().min(1).max(10).default(3),
 })
+
+// Type exports
+export type LeadFormData = z.infer<typeof leadSchema>
+export type ContactFormData = z.infer<typeof contactSchema>
+export type ProjectFormData = z.infer<typeof projectSchema>
+export type PostFormData = z.infer<typeof postSchema>
+export type ChatFormData = z.infer<typeof chatSchema>
+export type RagQueryFormData = z.infer<typeof ragQuerySchema>
