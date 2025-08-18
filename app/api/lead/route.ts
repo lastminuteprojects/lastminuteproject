@@ -8,6 +8,14 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if database is available
+    if (!prisma) {
+      return NextResponse.json(
+        { error: 'Database connection not available' },
+        { status: 503 }
+      )
+    }
+
     // Rate limiting
     const identifier = request.ip ?? '127.0.0.1'
     const { success } = await rateLimit(identifier)
