@@ -169,7 +169,7 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Project Domain *
             </label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -181,7 +181,7 @@ export function ContactForm() {
                     {...register('domain')}
                     className="text-brand-yellow focus:ring-brand-yellow"
                   />
-                  <span className="text-sm">{domain}</span>
+                  <span className="text-sm dark:text-gray-300">{domain}</span>
                 </label>
               ))}
             </div>
@@ -191,7 +191,7 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="details" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="details" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Project Details *
             </label>
             <Textarea
@@ -208,7 +208,7 @@ export function ContactForm() {
 
           {/* Dataset Information */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Dataset Availability
             </label>
             <div className="space-y-2">
@@ -220,7 +220,7 @@ export function ContactForm() {
                     {...register('dataset')}
                     className="text-brand-yellow focus:ring-brand-yellow"
                   />
-                  <span className="text-sm">{option.label}</span>
+                  <span className="text-sm dark:text-gray-300">{option.label}</span>
                 </label>
               ))}
             </div>
@@ -229,7 +229,7 @@ export function ContactForm() {
           {/* Budget and Timeline */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label htmlFor="budgetMin" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="budgetMin" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Budget Range (Min)
               </label>
               <Input
@@ -245,7 +245,7 @@ export function ContactForm() {
             </div>
             
             <div>
-              <label htmlFor="budgetMax" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="budgetMax" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Budget Range (Max)
               </label>
               <Input
@@ -261,7 +261,7 @@ export function ContactForm() {
             </div>
             
             <div>
-              <label htmlFor="deadline" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="deadline" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Deadline
               </label>
               <Input
@@ -275,7 +275,7 @@ export function ContactForm() {
 
           {/* File Upload */}
           <div>
-            <label htmlFor="fileUrl" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="fileUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Additional Files (Optional)
             </label>
             <Input
@@ -284,7 +284,7 @@ export function ContactForm() {
               accept=".pdf,.doc,.docx,.txt,.zip,.rar"
               className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-yellow file:text-brand-navy hover:file:bg-brand-yellow/90"
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
               Upload project brief, requirements document, or any reference materials (Max 10MB)
             </p>
           </div>
@@ -307,7 +307,7 @@ export function ContactForm() {
             )}
           </Button>
 
-          <p className="text-xs text-gray-500 text-center">
+          <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
             By submitting this form, you agree to our terms of service and privacy policy.
           </p>
         </form>

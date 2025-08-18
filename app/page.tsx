@@ -90,10 +90,6 @@ const faqs = [
     question: 'Do you provide post-delivery support?',
     answer: 'Yes, we provide 30 days of free support after delivery. We can also help with deployment, modifications, and future enhancements.',
   },
-  {
-    question: 'Can you sign an NDA?',
-    answer: 'Absolutely! We understand the importance of confidentiality and are happy to sign NDAs to protect your intellectual property.',
-  },
 ]
 
 export default function HomePage() {
@@ -104,12 +100,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="hero-gradient py-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-brand-navy mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-brand-navy dark:text-brand-navy mb-6">
             AI/ML & LLM Projects for Students
             <br />
             <span className="text-white">—any stack, on time.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-brand-navy mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-brand-navy dark:text-brand-navy mb-8 max-w-3xl mx-auto">
             From idea to working code with docs, demos and explanation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -126,7 +122,7 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="https://instagram.com/lastminuteprojects" target="_blank">
+              <Link href="https://instagram.com/last_minuteprojects" target="_blank">
                 Chat on Instagram
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -224,21 +220,20 @@ export default function HomePage() {
                Simple 5-step process from idea to working project. Express delivery available for urgent projects.
              </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto relative">
             {howItWorks.map((step, index) => (
-              <div key={step.step} className="text-center">
-                <div className="relative">
-                  <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                    {step.icon}
-                  </div>
-                  {index < howItWorks.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-brand-yellow transform translate-x-2 z-0" />
-                  )}
+              <div key={step.step} className="text-center relative z-10 mb-8 md:mb-0 flex-1">
+                <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center text-2xl mx-auto mb-4 border-4 border-white dark:border-gray-800 shadow-lg">
+                  {step.icon}
                 </div>
+                {/* Connecting line between circles */}
+                {index < howItWorks.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-brand-yellow z-0" />
+                )}
                 <h3 className="text-lg font-semibold text-brand-navy dark:text-white mb-2">
                   {step.step}. {step.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm lg:text-base px-2">{step.description}</p>
               </div>
             ))}
           </div>

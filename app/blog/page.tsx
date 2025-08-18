@@ -99,30 +99,30 @@ const categories = [
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Navbar />
       
       {/* Hero Section */}
       <section className="py-20 px-6 bg-gradient-to-br from-brand-yellow to-orange-500">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-brand-navy mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-brand-navy dark:text-brand-navy mb-6">
             AI/ML Blog
           </h1>
-          <p className="text-xl text-brand-navy mb-8">
+          <p className="text-xl text-brand-navy dark:text-brand-navy mb-8">
             Latest insights, tutorials, and guides for AI/ML students and enthusiasts
           </p>
         </div>
       </section>
 
       {/* Categories */}
-      <section className="py-8 px-6 bg-gray-50">
+      <section className="py-8 px-6 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
               <Badge 
                 key={category} 
                 variant="outline" 
-                className="cursor-pointer hover:bg-brand-yellow hover:text-brand-navy"
+                className="cursor-pointer hover:bg-brand-yellow hover:text-brand-navy dark:text-gray-300 dark:border-gray-600 dark:hover:bg-brand-yellow dark:hover:text-brand-navy"
               >
                 {category}
               </Badge>
@@ -132,34 +132,34 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Posts */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-navy dark:text-white mb-4">
               Featured Articles
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Our most popular and comprehensive guides
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {blogPosts.filter(post => post.featured).map((post) => (
-              <Card key={post.id} className="hover:shadow-lg transition-shadow">
+              <Card key={post.id} className="hover:shadow-lg transition-shadow bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                 <CardHeader>
-                  <div className="flex items-center space-x-2 text-sm text-gray-500 mb-2">
+                  <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
                     <Calendar className="h-4 w-4" />
                     <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
                     <Clock className="h-4 w-4 ml-4" />
                     <span>{post.readTime}</span>
                   </div>
-                  <CardTitle className="text-2xl">{post.title}</CardTitle>
-                  <CardDescription className="text-lg">{post.excerpt}</CardDescription>
+                  <CardTitle className="text-2xl dark:text-white">{post.title}</CardTitle>
+                  <CardDescription className="text-lg dark:text-gray-300">{post.excerpt}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
+                      <Badge key={tag} variant="outline" className="text-xs dark:text-gray-300 dark:border-gray-600">
                         {tag}
                       </Badge>
                     ))}
@@ -178,39 +178,39 @@ export default function BlogPage() {
       </section>
 
       {/* All Posts */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-20 px-6 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-navy dark:text-white mb-4">
               Latest Articles
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Stay updated with the latest in AI/ML
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
-              <Card key={post.id} className="hover:shadow-lg transition-shadow">
+              <Card key={post.id} className="hover:shadow-lg transition-shadow bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
                 <CardHeader>
-                  <div className="flex items-center space-x-2 text-sm text-gray-500 mb-2">
+                  <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
                     <Calendar className="h-4 w-4" />
                     <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
                     <Clock className="h-4 w-4 ml-4" />
                     <span>{post.readTime}</span>
                   </div>
-                  <CardTitle className="text-xl">{post.title}</CardTitle>
-                  <CardDescription>{post.excerpt}</CardDescription>
+                  <CardTitle className="text-xl dark:text-white">{post.title}</CardTitle>
+                  <CardDescription className="dark:text-gray-300">{post.excerpt}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
+                      <Badge key={tag} variant="outline" className="text-xs dark:text-gray-300 dark:border-gray-600">
                         {tag}
                       </Badge>
                     ))}
                   </div>
-                  <Button asChild variant="outline" className="w-full">
+                  <Button asChild variant="outline" className="w-full dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
                     <Link href={`/blog/${post.slug}`}>
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -236,7 +236,7 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
+              className="flex-1 px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-yellow dark:placeholder-gray-400"
             />
             <Button variant="brand">
               Subscribe

@@ -130,10 +130,10 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="py-20 px-6 bg-gradient-to-br from-brand-yellow to-orange-500">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-brand-navy mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-brand-navy dark:text-brand-navy mb-6">
             AI/ML Services
           </h1>
-          <p className="text-xl text-brand-navy mb-8">
+          <p className="text-xl text-brand-navy dark:text-brand-navy mb-8">
             From simple ML models to complex AI systems - we build it all with complete documentation and support.
           </p>
         </div>
@@ -151,7 +151,7 @@ export default function ServicesPage() {
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center">
                         <div className="w-12 h-12 bg-brand-yellow rounded-lg flex items-center justify-center mr-4">
-                          <IconComponent className="h-6 w-6 text-brand-navy" />
+                          <IconComponent className="h-6 w-6 text-brand-navy dark:text-brand-navy" />
                         </div>
                         <div>
                           <CardTitle className="text-2xl">{service.title}</CardTitle>
@@ -231,21 +231,21 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-brand-navy">1</span>
+                <span className="text-2xl font-bold text-brand-navy dark:text-brand-navy">1</span>
               </div>
               <h3 className="text-xl font-semibold text-brand-navy dark:text-white mb-2">Requirements Analysis</h3>
               <p className="text-gray-600 dark:text-gray-300">We analyze your requirements, suggest the best approach, and provide a detailed project plan.</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-brand-navy">2</span>
+                <span className="text-2xl font-bold text-brand-navy dark:text-brand-navy">2</span>
               </div>
               <h3 className="text-xl font-semibold text-brand-navy dark:text-white mb-2">Development & Testing</h3>
               <p className="text-gray-600 dark:text-gray-300">We build your project with regular updates, thorough testing, and performance optimization.</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-brand-navy">3</span>
+                <span className="text-2xl font-bold text-brand-navy dark:text-brand-navy">3</span>
               </div>
               <h3 className="text-xl font-semibold text-brand-navy dark:text-white mb-2">Delivery & Support</h3>
               <p className="text-gray-600 dark:text-gray-300">Complete code, documentation, demo, and 30 days of support to ensure your success.</p>

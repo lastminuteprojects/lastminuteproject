@@ -4,7 +4,8 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from 'react-hot-toast'
 import { Analytics } from '@vercel/analytics/react'
-// import { SpeedInsights } from '@vercel/speed-insights/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { CookieConsent } from '@/components/cookie-consent'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -68,7 +69,8 @@ export default function RootLayout({
           {children}
           <Toaster position="bottom-right" />
           <Analytics />
-          {/* <SpeedInsights /> */}
+          <SpeedInsights />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>

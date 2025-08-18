@@ -104,10 +104,10 @@ export default function ProjectsPage() {
       {/* Hero Section */}
       <section className="py-20 px-6 bg-gradient-to-br from-brand-yellow to-orange-500">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-brand-navy mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-brand-navy dark:text-brand-navy mb-6">
             AI/ML Projects Portfolio
           </h1>
-          <p className="text-xl text-brand-navy mb-8">
+          <p className="text-xl text-brand-navy dark:text-brand-navy mb-8">
             Explore our collection of AI/ML projects with complete code, documentation, and live demos.
           </p>
         </div>
@@ -124,7 +124,7 @@ export default function ProjectsPage() {
                   <Badge 
                     key={domain} 
                     variant="outline" 
-                    className="cursor-pointer hover:bg-brand-yellow hover:text-brand-navy"
+                    className="cursor-pointer hover:bg-brand-yellow hover:text-brand-navy dark:hover:bg-brand-yellow dark:hover:text-brand-navy"
                   >
                     {domain}
                   </Badge>
@@ -138,7 +138,7 @@ export default function ProjectsPage() {
                   <Badge 
                     key={difficulty} 
                     variant="outline" 
-                    className="cursor-pointer hover:bg-brand-yellow hover:text-brand-navy"
+                    className="cursor-pointer hover:bg-brand-yellow hover:text-brand-navy dark:hover:bg-brand-yellow dark:hover:text-brand-navy"
                   >
                     {difficulty}
                   </Badge>
@@ -160,7 +160,7 @@ export default function ProjectsPage() {
                     <span className="text-gray-500">Project Image</span>
                   </div>
                   {project.featured && (
-                    <Badge className="absolute top-4 right-4 bg-brand-yellow text-brand-navy">
+                    <Badge className="absolute top-4 right-4 bg-brand-yellow text-brand-navy dark:text-brand-navy">
                       Featured
                     </Badge>
                   )}
@@ -168,18 +168,18 @@ export default function ProjectsPage() {
                 <CardHeader>
                   <div className="flex justify-between items-start mb-2">
                     <Badge variant="domain">{project.domain}</Badge>
-                    <div className="flex items-center text-sm text-gray-500">
+                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                       <Star className="h-4 w-4 fill-current mr-1" />
                       {project.difficulty}/5
                     </div>
                   </div>
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <CardDescription>{project.summary}</CardDescription>
+                  <CardTitle className="text-xl dark:text-white">{project.title}</CardTitle>
+                  <CardDescription className="dark:text-gray-300">{project.summary}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
+                      <Badge key={tag} variant="outline" className="text-xs dark:text-gray-300 dark:border-gray-600">
                         {tag}
                       </Badge>
                     ))}
@@ -203,7 +203,7 @@ export default function ProjectsPage() {
                     )}
                   </div>
                   
-                  <Button asChild variant="outline" className="w-full">
+                  <Button asChild variant="outline" className="w-full dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
                     <Link href={`/projects/${project.slug}`}>
                       View Details
                       <ArrowRight className="ml-2 h-4 w-4" />
