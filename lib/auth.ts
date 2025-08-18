@@ -26,8 +26,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session: async ({ session, user }) => {
       if (session?.user && user) {
-        session.user.id = user.id
-        session.user.role = user.role
+        (session.user as any).id = user.id
       }
       return session
     },
