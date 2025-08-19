@@ -14,48 +14,33 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)',
-          padding: '40px',
+          padding: '60px',
           position: 'relative',
         }}
       >
-        {/* Logo/Brand */}
+        {/* Brand */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            marginBottom: '40px',
+            marginBottom: '50px',
           }}
         >
-          <div
-            style={{
-              fontSize: '48px',
-              fontWeight: 'bold',
-              color: '#1e3a8a',
-              marginRight: '16px',
-            }}
-          >
-            🚀
-          </div>
-          <div
-            style={{
-              fontSize: '48px',
-              fontWeight: 'bold',
-              color: '#1e3a8a',
-            }}
-          >
+          <span style={{ fontSize: '50px', marginRight: '20px' }}>🚀</span>
+          <span style={{ fontSize: '50px', fontWeight: 'bold', color: '#1e3a8a' }}>
             Last Minute Projects
-          </div>
+          </span>
         </div>
 
         {/* Main Title */}
         <div
           style={{
-            fontSize: '64px',
+            fontSize: '70px',
             fontWeight: 'bold',
             color: '#1e3a8a',
             textAlign: 'center',
-            marginBottom: '24px',
-            lineHeight: '1.2',
+            marginBottom: '30px',
+            lineHeight: '1.1',
           }}
         >
           Complete Software Projects
@@ -64,24 +49,24 @@ export async function GET() {
         {/* Subtitle */}
         <div
           style={{
-            fontSize: '32px',
+            fontSize: '36px',
             color: '#1e3a8a',
             textAlign: 'center',
-            marginBottom: '40px',
-            lineHeight: '1.4',
+            marginBottom: '50px',
+            lineHeight: '1.3',
           }}
         >
           Any Tech Stack • On Time • Complete Code
         </div>
 
-        {/* Tech Stack Icons */}
+        {/* Tech Icons */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '24px',
-            fontSize: '32px',
-            marginBottom: '40px',
+            gap: '30px',
+            fontSize: '40px',
+            marginBottom: '50px',
           }}
         >
           <span>🌐</span>
@@ -97,85 +82,36 @@ export async function GET() {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            gap: '16px',
-            marginBottom: '40px',
+            gap: '20px',
+            marginBottom: '50px',
           }}
         >
-          <div
-            style={{
-              backgroundColor: 'rgba(30, 58, 138, 0.1)',
-              color: '#1e3a8a',
-              padding: '8px 16px',
-              borderRadius: '20px',
-              fontSize: '16px',
-              fontWeight: '500',
-              border: '2px solid rgba(30, 58, 138, 0.2)',
-            }}
-          >
-            Web Development
-          </div>
-          <div
-            style={{
-              backgroundColor: 'rgba(30, 58, 138, 0.1)',
-              color: '#1e3a8a',
-              padding: '8px 16px',
-              borderRadius: '20px',
-              fontSize: '16px',
-              fontWeight: '500',
-              border: '2px solid rgba(30, 58, 138, 0.2)',
-            }}
-          >
-            Mobile Apps
-          </div>
-          <div
-            style={{
-              backgroundColor: 'rgba(30, 58, 138, 0.1)',
-              color: '#1e3a8a',
-              padding: '8px 16px',
-              borderRadius: '20px',
-              fontSize: '16px',
-              fontWeight: '500',
-              border: '2px solid rgba(30, 58, 138, 0.2)',
-            }}
-          >
-            AI/ML
-          </div>
-          <div
-            style={{
-              backgroundColor: 'rgba(30, 58, 138, 0.1)',
-              color: '#1e3a8a',
-              padding: '8px 16px',
-              borderRadius: '20px',
-              fontSize: '16px',
-              fontWeight: '500',
-              border: '2px solid rgba(30, 58, 138, 0.2)',
-            }}
-          >
-            Blockchain
-          </div>
-          <div
-            style={{
-              backgroundColor: 'rgba(30, 58, 138, 0.1)',
-              color: '#1e3a8a',
-              padding: '8px 16px',
-              borderRadius: '20px',
-              fontSize: '16px',
-              fontWeight: '500',
-              border: '2px solid rgba(30, 58, 138, 0.2)',
-            }}
-          >
-            Data Analytics
-          </div>
+          {['Web Development', 'Mobile Apps', 'AI/ML', 'Blockchain', 'Data Analytics'].map((feature) => (
+            <div
+              key={feature}
+              style={{
+                backgroundColor: 'rgba(30, 58, 138, 0.1)',
+                color: '#1e3a8a',
+                padding: '12px 20px',
+                borderRadius: '25px',
+                fontSize: '18px',
+                fontWeight: '600',
+                border: '2px solid rgba(30, 58, 138, 0.2)',
+              }}
+            >
+              {feature}
+            </div>
+          ))}
         </div>
 
         {/* Bottom Text */}
         <div
           style={{
             position: 'absolute',
-            bottom: '40px',
-            fontSize: '24px',
+            bottom: '60px',
+            fontSize: '28px',
             color: '#1e3a8a',
-            fontWeight: '500',
+            fontWeight: '600',
             textAlign: 'center',
           }}
         >
@@ -186,10 +122,10 @@ export async function GET() {
         <div
           style={{
             position: 'absolute',
-            bottom: '20px',
-            fontSize: '16px',
+            bottom: '30px',
+            fontSize: '18px',
             color: '#1e3a8a',
-            fontWeight: '400',
+            fontWeight: '500',
             opacity: 0.8,
           }}
         >

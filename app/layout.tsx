@@ -11,11 +11,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://lastminuteproject.vercel.app'),
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/logo.png',
-  },
   title: {
     default: 'Last Minute Projects - Complete Software Projects for Students',
     template: '%s | Last Minute Projects'
@@ -24,18 +19,15 @@ export const metadata: Metadata = {
   keywords: ['AI', 'ML', 'Web Development', 'Mobile Development', 'Blockchain', 'Data Analytics', 'Student Projects', 'Python', 'JavaScript', 'React', 'Next.js', 'Flutter', 'Solidity'],
   authors: [{ name: 'Last Minute Projects' }],
   creator: 'Last Minute Projects',
-  publisher: 'Last Minute Projects',
-  category: 'Technology',
   openGraph: {
     type: 'website',
-    locale: 'en_US',
     url: 'https://lastminuteproject.vercel.app',
     title: 'Last Minute Projects - Complete Software Projects for Students',
     description: 'Complete software projects for students—any tech stack, on time. From web apps to AI/ML, mobile to blockchain. We build it all with complete code, docs & demos.',
     siteName: 'Last Minute Projects',
     images: [
       {
-        url: 'https://lastminuteproject.vercel.app/og-image',
+        url: '/og-image',
         width: 1200,
         height: 630,
         alt: 'Last Minute Projects - Complete Software Projects for Students',
@@ -46,23 +38,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Last Minute Projects - Complete Software Projects for Students',
     description: 'Complete software projects for students—any tech stack, on time. From web apps to AI/ML, mobile to blockchain.',
-    images: ['https://lastminuteproject.vercel.app/og-image'],
-    creator: '@lastminuteprojects',
-    site: '@lastminuteprojects',
+    images: ['/og-image'],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code',
   },
   alternates: {
     canonical: 'https://lastminuteproject.vercel.app',
@@ -84,25 +64,6 @@ export default function RootLayout({
         <meta name="theme-color" content="#fbbf24" />
         <meta name="msapplication-TileColor" content="#fbbf24" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
-        {/* Additional OG tags for better compatibility */}
-        <meta property="og:image" content="https://lastminuteproject.vercel.app/og-image" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Last Minute Projects - Complete Software Projects for Students" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://lastminuteproject.vercel.app" />
-        <meta property="og:title" content="Last Minute Projects - Complete Software Projects for Students" />
-        <meta property="og:description" content="Complete software projects for students—any tech stack, on time. From web apps to AI/ML, mobile to blockchain. We build it all with complete code, docs & demos." />
-        <meta property="og:site_name" content="Last Minute Projects" />
-        
-        {/* Twitter Card tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://lastminuteproject.vercel.app/og-image" />
-        <meta name="twitter:title" content="Last Minute Projects - Complete Software Projects for Students" />
-        <meta name="twitter:description" content="Complete software projects for students—any tech stack, on time. From web apps to AI/ML, mobile to blockchain." />
-        <meta name="twitter:creator" content="@lastminuteprojects" />
-        <meta name="twitter:site" content="@lastminuteprojects" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
