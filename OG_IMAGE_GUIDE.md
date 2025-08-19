@@ -13,7 +13,7 @@ Your website uses a **dynamic Open Graph image** that automatically generates so
 ### 1. Edit the `getCurrentContent()` function in `/app/og-image/route.tsx`:
 
 ```javascript
-function getCurrentContent() {
+function getCurrentContent() {  
   return {
     title: 'Complete Software Projects',           // Main title
     subtitle: 'Any Tech Stack • On Time • Complete Code',  // Subtitle

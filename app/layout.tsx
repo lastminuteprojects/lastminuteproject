@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: 'Last Minute Projects',
     images: [
       {
-        url: '/og-image',
+        url: 'https://lastminuteproject.vercel.app/og-image',
         width: 1200,
         height: 630,
         alt: 'Last Minute Projects - Complete Software Projects for Students',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Last Minute Projects - Complete Software Projects for Students',
     description: 'Complete software projects for students—any tech stack, on time. From web apps to AI/ML, mobile to blockchain.',
-    images: ['/og-image'],
+    images: ['https://lastminuteproject.vercel.app/og-image'],
     creator: '@lastminuteprojects',
     site: '@lastminuteprojects',
   },
@@ -84,6 +84,25 @@ export default function RootLayout({
         <meta name="theme-color" content="#fbbf24" />
         <meta name="msapplication-TileColor" content="#fbbf24" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Additional OG tags for better compatibility */}
+        <meta property="og:image" content="https://lastminuteproject.vercel.app/og-image" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Last Minute Projects - Complete Software Projects for Students" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://lastminuteproject.vercel.app" />
+        <meta property="og:title" content="Last Minute Projects - Complete Software Projects for Students" />
+        <meta property="og:description" content="Complete software projects for students—any tech stack, on time. From web apps to AI/ML, mobile to blockchain. We build it all with complete code, docs & demos." />
+        <meta property="og:site_name" content="Last Minute Projects" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://lastminuteproject.vercel.app/og-image" />
+        <meta name="twitter:title" content="Last Minute Projects - Complete Software Projects for Students" />
+        <meta name="twitter:description" content="Complete software projects for students—any tech stack, on time. From web apps to AI/ML, mobile to blockchain." />
+        <meta name="twitter:creator" content="@lastminuteprojects" />
+        <meta name="twitter:site" content="@lastminuteprojects" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
