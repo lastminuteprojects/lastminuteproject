@@ -228,6 +228,7 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
+          {/* Temporarily hidden - View All Projects button
           <div className="text-center mt-12">
             <Button asChild variant="outline" size="lg">
               <Link href="/projects">
@@ -236,6 +237,7 @@ export default function HomePage() {
               </Link>
             </Button>
           </div>
+          */}
         </div>
       </section>
 
