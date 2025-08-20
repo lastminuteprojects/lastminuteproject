@@ -3,6 +3,7 @@ import { leadSchema } from '@/lib/validations'
 import { prisma } from '@/lib/db'
 import { Resend } from 'resend'
 import { rateLimit } from '@/lib/rate-limit'
+import { put } from '@vercel/blob'
 
 // Only initialize Resend if API key is available
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
@@ -28,11 +29,53 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const body = await request.json()
+    // Handle FormData (for file uploads)
+    const formData = await request.formData()
+    
+    // Extract all files
+    const files: File[] = []
+    for (const [key, value] of formData.entries()) {
+      if (key.startsWith('file') && value instanceof File) {
+        files.push(value)
+      }
+    }
+    
+    // Convert FormData to object for validation
+    const body: any = {}
+    for (const [key, value] of formData.entries()) {
+      if (!key.startsWith('file')) {
+        // Convert budget fields to numbers if they exist
+        if ((key === 'budgetMin' || key === 'budgetMax') && value) {
+          body[key] = Number(value)
+        } else {
+          body[key] = value
+        }
+      }
+    }
     
     // Validate the request body
     const validatedData = leadSchema.parse(body)
     
+    // Upload files to Vercel Blob if present
+    let fileUrls: string[] = []
+    if (files.length > 0 && process.env.BLOB_READ_WRITE_TOKEN) {
+      try {
+        for (const file of files) {
+          const bytes = await file.arrayBuffer()
+          const buffer = Buffer.from(bytes)
+          
+          const { url } = await put(`uploads/${Date.now()}-${file.name}`, buffer, {
+            access: 'public',
+          })
+          
+          fileUrls.push(url)
+        }
+      } catch (error) {
+        console.error('Error uploading files:', error)
+        // Continue without file upload if it fails
+      }
+    }
+
     // Save to database
     const lead = await prisma.lead.create({
       data: {
@@ -47,7 +90,7 @@ export async function POST(request: NextRequest) {
         budgetMin: validatedData.budgetMin,
         budgetMax: validatedData.budgetMax,
         deadline: validatedData.deadline ? new Date(validatedData.deadline) : null,
-        fileUrl: validatedData.fileUrl,
+        fileUrl: fileUrls.length > 0 ? fileUrls.join(', ') : null,
       },
     })
 

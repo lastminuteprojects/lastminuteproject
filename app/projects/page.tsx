@@ -21,7 +21,7 @@ const projects = [
     tags: ['OpenAI', 'RAG', 'Python', 'FastAPI'],
     difficulty: 4,
     featured: true,
-    thumbUrl: '/api/placeholder/400/250',
+    thumbUrl: '/projects/ai-chatbot-image.jpg',
     demoUrl: '/demos/chat',
     repoUrl: 'https://github.com/example/rag-chatbot',
     reportUrl: '/reports/rag-chatbot.pdf'
@@ -35,7 +35,7 @@ const projects = [
     tags: ['PyTorch', 'CNN', 'Transfer Learning', 'OpenCV'],
     difficulty: 3,
     featured: true,
-    thumbUrl: '/api/placeholder/400/250',
+    thumbUrl: '/projects/Image Classification Model.jpg',
     demoUrl: '/demos/vision',
     repoUrl: 'https://github.com/example/image-classifier'
   },
@@ -48,7 +48,7 @@ const projects = [
     tags: ['Transformers', 'FastAPI', 'BERT', 'Hugging Face'],
     difficulty: 3,
     featured: false,
-    thumbUrl: '/api/placeholder/400/250',
+    thumbUrl: '/projects/Text Summarization API.jpg',
     demoUrl: '/demos/summarize',
     repoUrl: 'https://github.com/example/text-summarizer'
   },
@@ -61,7 +61,7 @@ const projects = [
     tags: ['BERT', 'Streamlit', 'Pandas', 'Matplotlib'],
     difficulty: 2,
     featured: false,
-    thumbUrl: '/api/placeholder/400/250',
+    thumbUrl: '/projects/Social Media Sentiment Analyzer.jpg',
     demoUrl: '/demos/sentiment',
     repoUrl: 'https://github.com/example/sentiment-analyzer'
   },
@@ -74,7 +74,7 @@ const projects = [
     tags: ['scikit-learn', 'Pandas', 'NumPy', 'Flask'],
     difficulty: 2,
     featured: false,
-    thumbUrl: '/api/placeholder/400/250',
+    thumbUrl: '/projects/Movie Recommendation System.jpg',
     demoUrl: '/demos/recommendations',
     repoUrl: 'https://github.com/example/movie-recommender'
   },
@@ -87,7 +87,7 @@ const projects = [
     tags: ['MLflow', 'Docker', 'FastAPI', 'Prometheus'],
     difficulty: 5,
     featured: true,
-    thumbUrl: '/api/placeholder/400/250',
+    thumbUrl: '/projects/ML Pipeline with MLOps.jpg',
     demoUrl: '/demos/pipeline',
     repoUrl: 'https://github.com/example/ml-pipeline'
   }
@@ -156,8 +156,18 @@ export default function ProjectsPage() {
             {projects.map((project) => (
               <Card key={project.id} className="hover:shadow-lg transition-shadow bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                 <div className="relative">
-                  <div className="w-full h-48 bg-gray-200 rounded-t-lg flex items-center justify-center">
-                    <span className="text-gray-500">Project Image</span>
+                  <div className="w-full h-48 bg-gray-200 rounded-t-lg overflow-hidden">
+                    {project.thumbUrl ? (
+                      <img 
+                        src={project.thumbUrl} 
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-gray-500">Project Image</span>
+                      </div>
+                    )}
                   </div>
                   {project.featured && (
                     <Badge className="absolute top-4 right-4 bg-brand-yellow text-brand-navy dark:text-brand-navy">

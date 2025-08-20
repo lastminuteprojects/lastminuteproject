@@ -39,6 +39,8 @@ const datasetOptions = [
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([])
+  const [fileError, setFileError] = useState<string>('')
   
   const {
     register,
@@ -52,16 +54,70 @@ export function ContactForm() {
 
   const selectedDomain = watch('domain')
 
+  const validateFiles = (files: File[]) => {
+    setFileError('')
+    
+    // Check number of files
+    if (files.length > 5) {
+      setFileError('Maximum 5 files allowed')
+      return false
+    }
+    
+    // Check total size (50MB = 50 * 1024 * 1024 bytes)
+    const totalSize = files.reduce((sum, file) => sum + file.size, 0)
+    const maxSize = 50 * 1024 * 1024 // 50MB
+    
+    if (totalSize > maxSize) {
+      setFileError('Total file size must be less than 50MB')
+      return false
+    }
+    
+    return true
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newFiles = Array.from(e.target.files || [])
+    
+    // Combine existing files with new files
+    const allFiles = [...selectedFiles, ...newFiles]
+    
+    if (validateFiles(allFiles)) {
+      setSelectedFiles(allFiles)
+    } else {
+      // Don't clear the input, just don't add the new files
+      console.log('File validation failed')
+    }
+    
+    // Clear the input so the same file can be selected again
+    e.target.value = ''
+  }
+
+  const removeFile = (index: number) => {
+    setSelectedFiles(selectedFiles.filter((_, i) => i !== index))
+  }
+
   const onSubmit = async (data: LeadFormData) => {
     setIsSubmitting(true)
     
     try {
+      // Create FormData to handle file upload
+      const formData = new FormData()
+      
+      // Add all form data
+      Object.keys(data).forEach(key => {
+        if (data[key as keyof LeadFormData] !== undefined && data[key as keyof LeadFormData] !== null) {
+          formData.append(key, String(data[key as keyof LeadFormData]))
+        }
+      })
+      
+      // Add files if selected
+      selectedFiles.forEach((file, index) => {
+        formData.append(`file${index}`, file)
+      })
+
       const response = await fetch('/api/lead', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        body: formData, // Send as FormData instead of JSON
       })
 
       if (!response.ok) {
@@ -70,6 +126,7 @@ export function ContactForm() {
 
       toast.success('Thank you! We\'ll get back to you within 24 hours.')
       reset()
+      setSelectedFiles([])
     } catch (error) {
       console.error('Error submitting form:', error)
       toast.error('Something went wrong. Please try again.')
@@ -274,14 +331,16 @@ export function ContactForm() {
 
           {/* File Upload */}
           <div>
-            <label htmlFor="fileUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="files" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Additional Files (Optional)
             </label>
             <div className="relative">
               <input
-                id="fileUrl"
+                id="files"
                 type="file"
+                multiple
                 accept=".pdf,.doc,.docx,.txt,.zip,.rar"
+                onChange={handleFileChange}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               />
               <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-brand-yellow dark:hover:border-brand-yellow transition-colors bg-gray-50 dark:bg-gray-800">
@@ -293,15 +352,41 @@ export function ContactForm() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
-                      Click to upload or drag and drop
+                      {selectedFiles.length > 0 
+                        ? `${selectedFiles.length} file(s) selected` 
+                        : 'Click to upload or drag and drop'
+                      }
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                      PDF, DOC, DOCX, TXT, ZIP, RAR (Max 10MB)
+                      PDF, DOC, DOCX, TXT, ZIP, RAR (Max 5 files, 50MB total)
                     </p>
                   </div>
                 </div>
               </div>
             </div>
+            {fileError && (
+              <p className="text-red-500 text-sm mt-2">{fileError}</p>
+            )}
+            {selectedFiles.length > 0 && (
+              <div className="mt-3 space-y-2">
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Selected files:</p>
+                {selectedFiles.map((file, index) => (
+                  <div key={index} className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-700 rounded">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-sm text-gray-600 dark:text-gray-300">{file.name}</span>
+                      <span className="text-xs text-gray-500">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeFile(index)}
+                      className="text-red-500 hover:text-red-700 text-sm"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <Button
