@@ -57,23 +57,23 @@ export async function POST(request: NextRequest) {
     // Validate the request body
     const validatedData = leadSchema.parse(body)
     
-    // First, create the lead to get the ID
-    const lead = await prisma.lead.create({
-      data: {
-        name: validatedData.name,
-        email: validatedData.email,
-        phone: validatedData.phone,
-        studyYear: validatedData.studyYear,
-        domain: validatedData.domain,
-        title: validatedData.title,
-        details: validatedData.details,
-        dataset: validatedData.dataset,
-        budgetMin: validatedData.budgetMin,
-        budgetMax: validatedData.budgetMax,
-        deadline: validatedData.deadline ? new Date(validatedData.deadline) : null,
-        fileUrl: null, // Will update after file upload
-      },
-    })
+            // First, create the lead to get the ID
+        const lead = await prisma.lead.create({
+          data: {
+            name: validatedData.name,
+            email: validatedData.email,
+            phone: validatedData.phone,
+            studyYear: validatedData.studyYear,
+            projectDomain: validatedData.domain,
+            projectTitle: validatedData.title,
+            projectDetails: validatedData.details,
+            dataset: validatedData.dataset,
+            budgetMin: validatedData.budgetMin,
+            budgetMax: validatedData.budgetMax,
+            deadline: validatedData.deadline ? new Date(validatedData.deadline) : null,
+            fileUrl: null, // Will update after file upload
+          },
+        })
 
     // Upload files to Vercel Blob if present
     let fileUrls: string[] = []
@@ -93,16 +93,7 @@ export async function POST(request: NextRequest) {
           
           fileUrls.push(url)
           
-          // Store file metadata in database
-          await prisma.leadFile.create({
-            data: {
-              leadId: lead.id,
-              fileName: file.name,
-              fileUrl: url,
-              fileSize: file.size,
-              fileType: file.type || 'application/octet-stream',
-            },
-          })
+          // File metadata is stored in fileUrl field
         }
         
         // Update the lead with file URLs on separate lines
@@ -128,15 +119,15 @@ export async function POST(request: NextRequest) {
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
               <h2 style="color: #0B2A3B;">Thank you for contacting Last Minute Projects!</h2>
-              <p>Hi ${validatedData.name},</p>
-              <p>We've received your project inquiry for: <strong>${validatedData.title}</strong></p>
-              <p>Our team will review your requirements and get back to you within 24 hours with a detailed quote and timeline.</p>
-              <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <h3 style="color: #0B2A3B; margin-top: 0;">Project Summary:</h3>
-                <p><strong>Domain:</strong> ${validatedData.domain || 'Not specified'}</p>
-                <p><strong>Budget Range:</strong> ₹${validatedData.budgetMin || '0'} - ₹${validatedData.budgetMax || 'Not specified'}</p>
-                <p><strong>Deadline:</strong> ${validatedData.deadline || 'Not specified'}</p>
-              </div>
+                             <p>Hi ${validatedData.name},</p>
+               <p>We've received your project inquiry for: <strong>${validatedData.title}</strong></p>
+               <p>Our team will review your requirements and get back to you within 24 hours with a detailed quote and timeline.</p>
+               <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                 <h3 style="color: #0B2A3B; margin-top: 0;">Project Summary:</h3>
+                 <p><strong>Project Domain:</strong> ${validatedData.domain || 'Not specified'}</p>
+                 <p><strong>Budget Range:</strong> ₹${validatedData.budgetMin || '0'} - ₹${validatedData.budgetMax || 'Not specified'}</p>
+                 <p><strong>Deadline:</strong> ${validatedData.deadline || 'Not specified'}</p>
+               </div>
               <p>In the meantime, you can:</p>
               <ul>
                 <li>Check out our <a href="${process.env.NEXTAUTH_URL}/projects" style="color: #FFD42A;">project portfolio</a></li>

@@ -16,32 +16,16 @@ model Lead {
   email     String
   phone     String?
   studyYear String?
-  domain    String?  // NLP, CV, RAG, LLM, Web, etc.
-  title     String
-  details   String
+  projectDomain    String?  // NLP, CV, RAG, LLM, Web, etc.
+  projectTitle     String
+  projectDetails   String
   dataset   String?  // provided|need_help|public_source
   budgetMin Int?
   budgetMax Int?
   deadline  DateTime?
   fileUrl   String?  // Legacy field - keeping for backward compatibility
-  status    String   @default("new")
+  leadStatus    String   @default("new")
   createdAt DateTime @default(now())
-  
-  // Relation to uploaded files
-  files     LeadFile[]
-}
-
-model LeadFile {
-  id       String   @id @default(cuid())
-  leadId   String
-  lead     Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
-  fileName String
-  fileUrl  String
-  fileSize Int
-  fileType String
-  uploadedAt DateTime @default(now())
-  
-  @@index([leadId])
 }
 
 model Project {
