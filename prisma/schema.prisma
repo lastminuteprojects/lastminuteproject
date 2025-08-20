@@ -23,9 +23,25 @@ model Lead {
   budgetMin Int?
   budgetMax Int?
   deadline  DateTime?
-  fileUrl   String?
+  fileUrl   String?  // Legacy field - keeping for backward compatibility
   status    String   @default("new")
   createdAt DateTime @default(now())
+  
+  // Relation to uploaded files
+  files     LeadFile[]
+}
+
+model LeadFile {
+  id       String   @id @default(cuid())
+  leadId   String
+  lead     Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  fileName String
+  fileUrl  String
+  fileSize Int
+  fileType String
+  uploadedAt DateTime @default(now())
+  
+  @@index([leadId])
 }
 
 model Project {

@@ -57,27 +57,7 @@ export async function POST(request: NextRequest) {
     // Validate the request body
     const validatedData = leadSchema.parse(body)
     
-    // Upload files to Vercel Blob if present
-    let fileUrls: string[] = []
-    if (files.length > 0 && process.env.BLOB_READ_WRITE_TOKEN) {
-      try {
-        for (const file of files) {
-          const bytes = await file.arrayBuffer()
-          const buffer = Buffer.from(bytes)
-          
-          const { url } = await put(`uploads/${Date.now()}-${file.name}`, buffer, {
-            access: 'public',
-          })
-          
-          fileUrls.push(url)
-        }
-      } catch (error) {
-        console.error('Error uploading files:', error)
-        // Continue without file upload if it fails
-      }
-    }
-
-    // Save to database
+    // First, create the lead to get the ID
     const lead = await prisma.lead.create({
       data: {
         name: validatedData.name,
@@ -91,9 +71,52 @@ export async function POST(request: NextRequest) {
         budgetMin: validatedData.budgetMin,
         budgetMax: validatedData.budgetMax,
         deadline: validatedData.deadline ? new Date(validatedData.deadline) : null,
-        fileUrl: fileUrls.length > 0 ? fileUrls.join(', ') : null,
+        fileUrl: null, // Will update after file upload
       },
     })
+
+    // Upload files to Vercel Blob if present
+    let fileUrls: string[] = []
+    if (files.length > 0 && process.env.BLOB_READ_WRITE_TOKEN) {
+      try {
+        for (const file of files) {
+          const bytes = await file.arrayBuffer()
+          const buffer = Buffer.from(bytes)
+          
+          // Create organized file path with person's name and original filename
+          const sanitizedPersonName = validatedData.name.replace(/[^a-zA-Z0-9]/g, '_')
+          const filePath = `leads/${sanitizedPersonName}/${file.name}`
+          
+          const { url } = await put(filePath, buffer, {
+            access: 'public',
+          })
+          
+          fileUrls.push(url)
+          
+          // Store file metadata in database
+          await prisma.leadFile.create({
+            data: {
+              leadId: lead.id,
+              fileName: file.name,
+              fileUrl: url,
+              fileSize: file.size,
+              fileType: file.type || 'application/octet-stream',
+            },
+          })
+        }
+        
+        // Update the lead with file URLs on separate lines
+        await prisma.lead.update({
+          where: { id: lead.id },
+          data: {
+            fileUrl: fileUrls.join('\n'),
+          },
+        })
+      } catch (error) {
+        console.error('Error uploading files:', error)
+        // Continue without file upload if it fails
+      }
+    }
 
     // Send email notification
     if (resend && process.env.RESEND_API_KEY) {
