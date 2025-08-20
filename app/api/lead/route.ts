@@ -34,7 +34,8 @@ export async function POST(request: NextRequest) {
     
     // Extract all files
     const files: File[] = []
-    for (const [key, value] of formData.entries()) {
+    const entries = Array.from(formData.entries())
+    for (const [key, value] of entries) {
       if (key.startsWith('file') && value instanceof File) {
         files.push(value)
       }
@@ -42,7 +43,7 @@ export async function POST(request: NextRequest) {
     
     // Convert FormData to object for validation
     const body: any = {}
-    for (const [key, value] of formData.entries()) {
+    for (const [key, value] of entries) {
       if (!key.startsWith('file')) {
         // Convert budget fields to numbers if they exist
         if ((key === 'budgetMin' || key === 'budgetMax') && value) {
